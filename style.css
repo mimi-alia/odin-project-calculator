@@ -1,0 +1,15 @@
+html,
+body {
+    margin:0;
+}
+.calculator{
+    width: 50%;
+    height:500px;
+    margin: 10px auto;
+    display: flex;
+    border:1px solid black;
+    border-radius: 10px;
+}
+.calc-screen {
+    
+}
