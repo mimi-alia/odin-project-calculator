@@ -2,6 +2,21 @@ let variable1;
 let variable2;
 let operator;
 
+const numButtons = new DocumentFragment;
+const operatorButtons = new DocumentFragment;
+let numList = [];
+const operators = ['/', 'x', '-', '+', '='];
+
+for (let i = 0; i < 10; i++){
+    numList.push(i);
+}
+
+numList.forEach(n => {
+    const nButton = document.createElement('span');
+    nButton.textContent = n;
+    nButton.className = 'numButton';
+    numButtons.appendChild(nButton);
+});
 
 
 const add = function(...nums){
