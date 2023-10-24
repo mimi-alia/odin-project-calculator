@@ -2,6 +2,7 @@ let variable1;
 let variable2;
 let operator;
 
+const buttonField = document.querySelector('.buttons');
 const numButtons = new DocumentFragment;
 const operatorButtons = new DocumentFragment;
 let numList = [];
@@ -17,6 +18,17 @@ numList.forEach(n => {
     nButton.className = 'numButton';
     numButtons.appendChild(nButton);
 });
+
+buttonField.append(numButtons);
+
+operators.forEach(o => {
+    const oButton = document.createElement('span');
+    oButton.textContent = o;
+    oButton.className = 'operatorButton';
+    operatorButtons.appendChild(oButton);
+});
+
+buttonField.append(operatorButtons)
 
 
 const add = function(...nums){
