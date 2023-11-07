@@ -1,23 +1,36 @@
+/* Input variables */
+
 let variable1;
 let variable2;
 let operator;
 
+
+/* Calculator layout variables */
+
 const buttonField = document.querySelector('.buttons');
+const numberButtons = document.querySelector('.num-buts');
+const operatorButtons = document.querySelector('.operator-buts');
 const numButtons = new DocumentFragment;
-const operatorButtons = new DocumentFragment;
+const oButtons = new DocumentFragment;
 let numList = [];
 const operators = ['/', 'x', '-', '+', '='];
+
+// create list of numbers to populate number buttons
 
 for (let i = 0; i < 10; i++){
     numList.push(i);
 }
 
+// add numbers from list to document fragment
+
 numList.forEach(n => {
     const nButton = document.createElement('span');
     nButton.textContent = n;
     nButton.className = 'numButton';
-    numButtons.appendChild(nButton);
+    numberButtons.appendChild(nButton);
 });
+
+// add document fragment to the button field
 
 buttonField.append(numButtons);
 
@@ -25,11 +38,14 @@ operators.forEach(o => {
     const oButton = document.createElement('span');
     oButton.textContent = o;
     oButton.className = 'operatorButton';
-    operatorButtons.appendChild(oButton);
+    oButtons.appendChild(oButton);
 });
 
-buttonField.append(operatorButtons)
+operatorButtons.append(oButtons)
 
+
+
+/*Calculator functions */
 
 const add = function(...nums){
     return nums.reduce((init, acc) => init + acc);
