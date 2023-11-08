@@ -2,14 +2,14 @@
 
 let variable1;
 let variable2;
-let operator;
+// let operator;
 
 
 /* Calculator layout variables */
 
 const buttonField = document.querySelector('.buttons');
 const numberButtons = document.querySelector('.num-buts');
-const operatorButtons = document.querySelector('.operator-buts');
+let operatorButtons = document.querySelector('.operator-buts');
 const numButtons = new DocumentFragment;
 const oButtons = new DocumentFragment;
 let numList = [];
@@ -64,17 +64,27 @@ const divide = function(...nums){
     return nums.reduce((init, acc) => init / acc);
 };
 
-const operate = function(operator){
+
+// function that takes an operator and performs calculation based on it
+const operate = function(operator, n1, n2){
     if (operator === '+') {
-        add(variable1, variable2);
+        return add(n1, n2);
     };
     if (operator === '-') {
-        subtract(variable1, variable2);
+        return subtract(n1, n2);
     };
     if (operator === '*') {
-        multiply(variable1, variable2);
+        return multiply(n1, n2);
     };
     if (operator === '/') {
-        divide(variable1, variable2);
+        return divide(n1, n2);
     };
 };
+
+
+// function that takes variable and performs calculation
+
+operatorButtons.addEventListener('click', (event)=> {
+    console.log(event.target);
+})
+
