@@ -2,11 +2,12 @@
 
 let variable1;
 let variable2;
-// let operator;
-
+let operator;
+let displayValues;
 
 /* Calculator layout variables */
 
+const calcScreen = document.querySelector('.calc-screen');
 const buttonField = document.querySelector('.buttons');
 const numberButtons = document.querySelector('.num-buts');
 let operatorButtons = document.querySelector('.operator-buts');
@@ -27,8 +28,9 @@ numList.forEach(n => {
     const nButton = document.createElement('span');
     nButton.textContent = n;
     nButton.className = 'numButton';
-    numberButtons.appendChild(nButton);
+    numButtons.appendChild(nButton);
 });
+numberButtons.append(numButtons)
 
 // add document fragment to the button field
 
@@ -81,10 +83,18 @@ const operate = function(operator, n1, n2){
     };
 };
 
+// function that opulate the display when you click the number buttons
+
+numberButtons.addEventListener('click', e => {
+    calcScreen.innerText = e.target.innerText;
+});
+
+
 
 // function that takes variable and performs calculation
 
-operatorButtons.addEventListener('click', (event)=> {
-    console.log(event.target);
+operatorButtons.addEventListener('click', (e)=> {
+    
 })
+
 
