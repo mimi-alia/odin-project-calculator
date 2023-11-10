@@ -3,12 +3,12 @@
 let variable1;
 let variable2;
 let operator;
-let displayValues;
+let displayValue = '0';
 
 /* Calculator layout variables */
 
 const calcScreen = document.querySelector('.calc-screen');
-const buttonField = document.querySelector('.buttons');
+const buttonField = document.querySelector('.button-field');
 const numberButtons = document.querySelector('.num-buts');
 const operatorButtons = document.querySelector('.operator-buts');
 const numButtons = new DocumentFragment;
@@ -34,7 +34,6 @@ numberButtons.append(numButtons)
 
 // add document fragment to the button field
 
-buttonField.append(numButtons);
 
 operators.forEach(o => {
     const oButton = document.createElement('span');
@@ -83,11 +82,21 @@ function operate(operator, n1, n2){
     };
 };
 
-// function that populates the display when you click the number buttons
+// function that populates the display with value stored in displayValue
 
-numberButtons.addEventListener('click', e => {
-    calcScreen.innerText = e.target.innerText;
-});
+function updateDisplay(){
+    calcScreen.innerText = displayValue;
+}
+
+updateDisplay();
+
+
+// On click of each numberButton, concat to display value and store in variable1 or variable2
+
+// for (let i in buttonField){
+//     console.log('hi');
+// }
+
 
 //function that stores the values of the buttons pressed in variable1 and variable2
 
