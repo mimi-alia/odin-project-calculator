@@ -49,26 +49,26 @@ operatorButtons.append(oButtons)
 
 /*Calculator functions */
 
-const add = function(...nums){
+function add(...nums){
     return nums.reduce((init, acc) => init + acc);
 };
 
-const subtract = function(...nums){
+function subtract(...nums){
     return nums.reduce((init, acc) => init - acc);
 };
 
 
-const multiply = function(...nums){
+function multiply(...nums){
     return nums.reduce((init, acc) => init * acc);
 };
 
-const divide = function(...nums){
+function divide(...nums){
     return nums.reduce((init, acc) => init / acc);
 };
 
 
 // function that takes an operator and performs calculation based on it
-const operate = function(operator, n1, n2){
+function operate(operator, n1, n2){
     if (operator === '+') {
         return add(n1, n2);
     };
