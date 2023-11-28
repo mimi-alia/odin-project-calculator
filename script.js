@@ -102,6 +102,24 @@ function updateDisplay(){
 
 updateDisplay();
 
+//on click of each button in the allButtons nodelist, do related function
+
+function clickButton() {
+    for(let button of allButtons) {
+        button.addEventListener('click', e => {
+            if (e.target.classList.contains('numButton')) {
+                console.log('number', e.target.innerText);
+                updateOperand(e.target.innerText);
+                updateDisplay();
+            } else if (e.target.classList.contains('operatorButton')){
+                console.log('operator', e);
+            }
+            
+        }
+    )}
+}
+
+clickButton();
 
 // On click of each numberButton, concat to display value and store in variable1 or variable2
 
@@ -115,14 +133,6 @@ function updateOperand(number){
     }
 }
 
-
-
-buttonField.addEventListener('click', e => {
-    if(e.target.classList[1] === 'numButton'){
-        updateOperand(e.target.classList[2])
-        updateDisplay();
-    }
-})
 
 //on click of operator, update display and store value in variable1 or variable2
 
