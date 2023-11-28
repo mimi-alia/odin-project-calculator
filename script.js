@@ -1,11 +1,17 @@
-/* Input variables */
+
+/*********************************************************************************************************************** */
+                                                /*Input Variables */
+/*********************************************************************************************************************** */
 
 let variable1;
 let variable2;
 let operator;
 let displayValue = '0';
 
-/* Calculator layout variables */
+
+/*********************************************************************************************************************** */
+                                                /*Calculator Variables */
+/*********************************************************************************************************************** */
 
 const calcScreen = document.querySelector('.calc-screen');
 const buttonField = document.querySelector('.button-field');
@@ -47,9 +53,12 @@ operators.forEach(o => {
 
 operatorButtons.append(oButtons)
 
-let allButtons = document.querySelectorAll('.button');
+const allButtons = document.querySelectorAll('.button');
 
-/*Calculator functions */
+/*********************************************************************************************************************** */
+                                                /*Calculator functions */
+/*********************************************************************************************************************** */
+
 
 function add(...nums){
     return nums.reduce((init, acc) => init + acc);
@@ -96,30 +105,55 @@ updateDisplay();
 
 // On click of each numberButton, concat to display value and store in variable1 or variable2
 
-// for (let i in buttonField){
-//     console.log('hi');
-// }
+
+//updates display value with inputted number value
+function updateOperand(number){
+    if (displayValue==='0'){
+        displayValue=number;
+    } else if (displayValue !=='0'){
+        displayValue+=number
+    }
+}
+
+
 
 buttonField.addEventListener('click', e => {
-    console.log(e.target.classList[0])
-    console.log(displayValue)
-    if (e.target.classList[0] === 'numButton'){
-        if(displayValue == '0') {
-            displayValue=e.target.classList[1];
-        } else if (displayValue !== '0'){
-            displayValue+=e.target.classList[1];
-        }
+    if(e.target.classList[1] === 'numButton'){
+        updateOperand(e.target.classList[2])
         updateDisplay();
-        console.log('You selected the number value: ' + e.target.classList[1]);
-    } else if (e.target.classList[0] === 'operatorButton' && e.target.classList[1] !== '=') {
-        if (variable1 === undefined){
-            variable1 = Number(displayValue)
-
-        } else if (variable1 !== undefined && variable2 === undefined){
-
-        }
-    } else if (e.target.classList[0] === 'operatorButton' && e.target.classList[1] === '=') {}
+    }
 })
+
+//on click of operator, update display and store value in variable1 or variable2
+
+function updateOperator(operator){
+    if (variable1 === undefined){
+        variable1 = displayValue;
+    } else if (variable1 !== undefined && variable2 === undefined){
+        variable2 == displayValue;
+    }
+}
+
+// buttonField.addEventListener('click', e => {
+//     console.log(e.target.classList[1])
+//     console.log(displayValue)
+//     if (e.target.classList[1] === 'numButton'){
+//         if(displayValue == '0') {
+//             displayValue=e.target.classList[2];
+//         } else if (displayValue !== '0'){
+//             displayValue+=e.target.classList[2];
+//         }
+//         updateDisplay();
+//         console.log('You selected the number value: ' + e.target.classList[2]);
+//     } else if (e.target.classList[1] === 'operatorButton' && e.target.classList[2] !== '=') {
+//         if (variable1 === undefined){
+//             variable1 = Number(displayValue)
+
+//         } else if (variable1 !== undefined && variable2 === undefined){
+
+//         }
+//     } else if (e.target.classList[1] === 'operatorButton' && e.target.classList[2] === '=') {}
+// })
 
 //how do you update the display so that on click of the next number after a non-equals-sign is clicked, it regenerates
 
