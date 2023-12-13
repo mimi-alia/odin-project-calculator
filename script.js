@@ -5,8 +5,7 @@
 
 let variable1;
 let variable2;
-let operator1;
-let operator2;
+let operatorVar;
 let answer;
 let displayValue = '0';
 
@@ -142,18 +141,23 @@ function updateDisplayValue(number){
 function updateVariables(operator){
     // if both variables and operators or empty, on click of an operator, store the numbers in v1 and operator in op1, then clear
     // display value
-    if (operator1 === undefined && operator2 === undefined){
+    if (operatorVar === undefined){
         variable1 = displayValue;
-        operator1= operator;
+        operatorVar= operator;
         displayValue = '';
 
     } else {
+            // save display value to second variable for calculation
             variable2 = displayValue;
-            answer = operate(operator1,Number(variable1), Number(variable2));
-            operator1 = operator;
-            displayValue = answer;
+            answer = operate(operatorVar,Number(variable1), Number(variable2));
+            // save calculated answer to variable1 to be used in next calculation
             variable1 = answer;
+            // display the answer on the screen
+            displayValue = answer;
             updateDisplay();
+            // save the most recently pressed operator to the operator variable
+            operatorVar = operator;
+            // clear display
             displayValue = '';
     }
 }    
