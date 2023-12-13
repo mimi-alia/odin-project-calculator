@@ -5,7 +5,9 @@
 
 let variable1;
 let variable2;
-let operator;
+let operator1;
+let operator2;
+let answer;
 let displayValue = '0';
 
 
@@ -86,7 +88,7 @@ function operate(operator, n1, n2){
     if (operator === '-') {
         return subtract(n1, n2);
     };
-    if (operator === '*') {
+    if (operator === 'x') {
         return multiply(n1, n2);
     };
     if (operator === '/') {
@@ -98,6 +100,7 @@ function operate(operator, n1, n2){
 
 function updateDisplay(){
     calcScreen.innerText = displayValue;
+
 }
 
 updateDisplay();
@@ -109,10 +112,11 @@ function clickButton() {
         button.addEventListener('click', e => {
             if (e.target.classList.contains('numButton')) {
                 console.log('number', e.target.innerText);
-                updateOperand(e.target.innerText);
+                updateDisplayValue(e.target.innerText);
                 updateDisplay();
             } else if (e.target.classList.contains('operatorButton')){
                 console.log('operator', e);
+                updateVariables(e.target.innerText);
             }
             
         }
@@ -125,10 +129,31 @@ clickButton();
 
 
 //updates display value with inputted number value
-function updateOperand(number){
+function updateDisplayValue(number){
     if (displayValue==='0'){
         displayValue=number;
     } else if (displayValue !=='0'){
-        displayValue+=number
+        displayValue+=number  
     }
 }
+
+// adds display value to variable1 / variable2
+
+function updateVariables(operator){
+    // if both variables and operators or empty, on click of an operator, store the numbers in v1 and operator in op1, then clear
+    // display value
+    if (operator1 === undefined && operator2 === undefined){
+        variable1 = displayValue;
+        operator1= operator;
+        displayValue = '';
+
+    } else {
+            variable2 = displayValue;
+            answer = operate(operator1,Number(variable1), Number(variable2));
+            operator1 = operator;
+            displayValue = answer;
+            variable1 = answer;
+            updateDisplay();
+            displayValue = '';
+    }
+}    
