@@ -110,14 +110,15 @@ function clickButton() {
     for(let button of allButtons) {
         button.addEventListener('click', e => {
             if (e.target.classList.contains('numButton')) {
-                console.log('number', e.target.innerText);
                 updateDisplayValue(e.target.innerText);
                 updateDisplay();
             } else if (e.target.classList.contains('operatorButton')){
-                console.log('operator', e);
-                updateVariables(e.target.innerText);
+                if(e.target.innerText !== '='){
+                    updateVariables(e.target.innerText);
+                } else {
+                    displayAndClear();
+                }
             }
-            
         }
     )}
 }
@@ -161,3 +162,14 @@ function updateVariables(operator){
             displayValue = '';
     }
 }    
+
+function displayAndClear(){
+    answer = operate(operatorVar,Number(variable1), Number(variable2));
+    displayValue = answer;
+    updateDisplay();
+    variable1 = undefined;
+    variable2 = undefined;
+    operatorVar = undefined;
+    displayValue = '';
+
+}
